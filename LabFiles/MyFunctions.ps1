@@ -62,6 +62,7 @@ function Add-CourseUser {
         $DatabaseFile = "$PSScriptRoot\MyLabFile.csv",
 
         [Parameter(Mandatory)]
+        [ValidatePattern({'^[A-Z][\w\-\s]*$'}, ErrorMessage = 'Name needs to be in a correct format, lead-in capital letter, no numbers or spaces')]
         [string]$Name,
 
         [Parameter(Mandatory)]
@@ -111,3 +112,18 @@ function Remove-CourseUser {
         Write-Output "Did not remove user $($RemoveUser.Name)"
     }
 }
+
+function Confirm-CourseID {
+    Param (
+    )
+    
+    $AllUsers = GetUserData
+
+    ForEach ($User in $AllUsers) {
+        if ($User -notmatch '^\d+$') {
+            Write-Output "User $($User.Name) has mismatching id: $($User.Id)"
+        }
+    }
+}
+ 
+

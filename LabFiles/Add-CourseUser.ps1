@@ -3,7 +3,7 @@ function Add-CourseUser {
     param (
         $DatabaseFile = "MyLabFile.csv",
 
-        [Parameter(Mandatory,HelpMessage="Go, Girl!")]
+        [Parameter(Mandatory,HelpMessage = 'Go, Girl!')]
         [string]$Name,
         
         [Parameter(Mandatory)]
